@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "clean": "node -e \"require('fs').rmSync('build',{recursive:true,force:true})\"",
     "prebuild": "npm run clean ",
     "build": "tsc",
@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/node": "^26.1.2",
     "@types/xml2js": "^0.4.14",
     "ts-node": "^10.9.2",
@@ -26,6 +27,7 @@
     "csv-parse": "^7.0.2",
     "csv-stringify": "^6.8.2",
     "dotenv": "^17.4.2",
+    "jest": "^30.4.2",
     "winston": "^3.19.0",
     "xml2js": "^0.6.2"
   }
