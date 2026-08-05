@@ -1,8 +1,11 @@
 import { readCSVFile , writeCSVFile } from "./utility/CSVParser";
+import { writeXMLFile, readXMLFile } from "./utility/XMLParser";
+import { readJSONFile, writeJSONFile } from "./utility/JSONParser";
 import path from 'path'
 
+
 const filePath = path.resolve(process.cwd(), "src/data/people-100.csv");
-const outputPath = path.resolve(process.cwd(), "src/data/output.csv");
+// const outputPath = path.resolve(process.cwd(), "src/data/output.csv");
 
 // async function main() {
 //     try {
@@ -20,29 +23,78 @@ const outputPath = path.resolve(process.cwd(), "src/data/output.csv");
 
 
 
+// async function main() {
+//     try {
+//         const data: string[][] = [
+//             ["Name", "Age", "City"],
+//             ["John", "25", "Beirut"],
+//             ["Sara", "30", "Tripoli"],
+//             ["Ali", "28", "Saida"]
+//         ];
+
+//         // Write CSV file
+//         await writeCSVFile(outputPath, data);
+
+//         console.log("CSV file written successfully!");
+
+//         // Verify by reading it back
+//         const result = await readCSVFile(outputPath);
+
+//         console.log("CSV content:");
+//         result.forEach(row => console.log(row));
+
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+
+// main();
+
+
+// const inputPath = path.resolve(process.cwd(),"src/data/toy orders.xml");
+
+// const outputPath = path.resolve(process.cwd(),"src/data/output.xml");
+
+const inputPath = path.resolve(process.cwd(),"src/data/book orders.json");
+const outputPath = path.resolve(process.cwd(),"src/data/output.json");
+
+interface Person {
+    id: number;
+    name: string;
+    age: number;
+}
+
 async function main() {
     try {
-        const data: string[][] = [
-            ["Name", "Age", "City"],
-            ["John", "25", "Beirut"],
-            ["Sara", "30", "Tripoli"],
-            ["Ali", "28", "Saida"]
-        ];
+        const jsonData = await readJSONFile<Person[]>(inputPath);
+        console.log("JSON Content:");
+        console.log(JSON.stringify(jsonData, null, 2));
 
-        // Write CSV file
-        await writeCSVFile(outputPath, data);
+        // const data = {
+        //     person: {
+        //         name: "Ahmad",
+        //         age: 25,
+        //         city: "Beirut"
+        //     }
+        // };
 
-        console.log("CSV file written successfully!");
+        jsonData.push({
+            id: 3, 
+            name: "Mohammad", 
+            age: 21
+        })
 
-        // Verify by reading it back
-        const result = await readCSVFile(outputPath);
 
-        console.log("CSV content:");
-        result.forEach(row => console.log(row));
+        await writeJSONFile(outputPath, jsonData);
 
-    } catch (error) {
+        // console.log("XML file created successfully");
+
+
+    } catch(error) {
         console.error(error);
     }
+
 }
+
 
 main();
