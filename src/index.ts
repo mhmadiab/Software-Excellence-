@@ -80,7 +80,7 @@ async function main() {
 
         jsonData.push({
             id: 3, 
-            name: "Mohammad", 
+            name: "Ali", 
             age: 21
         })
 
