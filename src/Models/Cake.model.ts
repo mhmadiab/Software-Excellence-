@@ -1,4 +1,4 @@
-import { Item, ItemCategory } from "./item.model";
+import { Item, ItemCategory } from "./Item.model";
 
 class Cake implements Item {
     constructor(
@@ -14,7 +14,7 @@ class Cake implements Item {
         private quantity: number
     ) {}
 
-    getCategoty(): ItemCategory {
+    getCategory(): ItemCategory {
         return ItemCategory.cake;
     }
 

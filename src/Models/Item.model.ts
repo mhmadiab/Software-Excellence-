@@ -1,10 +1,12 @@
 export enum ItemCategory{
-    cake
+    cake, 
+    book, 
+    toy
 }
 
 
 export interface Item{
-    getCategoty(): ItemCategory;
+    getCategory(): ItemCategory;
 
 
 
