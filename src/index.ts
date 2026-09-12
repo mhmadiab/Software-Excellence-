@@ -55,7 +55,7 @@ const filePath = path.resolve(process.cwd(), "src/data/people-100.csv");
 
 // const outputPath = path.resolve(process.cwd(),"src/data/output.xml");
 
-const inputPath = path.resolve(process.cwd(),"src/data/book orders.json");
+const inputPath = path.resolve(process.cwd(),"src/data/toy orders.xml");
 const outputPath = path.resolve(process.cwd(),"src/data/output.json");
 
 interface Person {
@@ -64,11 +64,45 @@ interface Person {
     age: number;
 }
 
+// async function main() {
+//     try {
+//         const jsonData = await readJSONFile<Person[]>(inputPath);
+//         console.log("JSON Content:");
+//         console.log(JSON.stringify(jsonData, null, 2));
+
+//         // const data = {
+//         //     person: {
+//         //         name: "Ahmad",
+//         //         age: 25,
+//         //         city: "Beirut"
+//         //     }
+//         // };
+
+//         jsonData.push({
+//             id: 3, 
+//             name: "Mohammad", 
+//             age: 21
+//         })
+
+
+//         await writeJSONFile(outputPath, jsonData);
+
+//         // console.log("XML file created successfully");
+
+
+//     } catch(error) {
+//         console.error(error);
+//     }
+
+// }
+
+
 async function main() {
     try {
-        const jsonData = await readJSONFile<Person[]>(inputPath);
-        console.log("JSON Content:");
-        console.log(JSON.stringify(jsonData, null, 2));
+        const xmlData = await readXMLFile(inputPath);
+        console.log("XML Content:");
+        console.log(JSON.stringify(xmlData, null, 2));
+        
 
         // const data = {
         //     person: {
@@ -78,14 +112,14 @@ async function main() {
         //     }
         // };
 
-        jsonData.push({
-            id: 3, 
-            name: "Mohammad", 
-            age: 21
-        })
+        // jsonData.push({
+        //     id: 3, 
+        //     name: "Mohammad", 
+        //     age: 21
+        // })
 
 
-        await writeJSONFile(outputPath, jsonData);
+        // await writeJSONFile(outputPath, jsonData);
 
         // console.log("XML file created successfully");
 
@@ -95,6 +129,5 @@ async function main() {
     }
 
 }
-
 
 main();
