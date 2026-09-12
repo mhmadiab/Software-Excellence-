@@ -1,100 +1,152 @@
-import { readCSVFile , writeCSVFile } from "./utility/CSVParser";
-import { writeXMLFile, readXMLFile } from "./utility/XMLParser";
-import { readJSONFile, writeJSONFile } from "./utility/JSONParser";
-import path from 'path'
+// import { readCSVFile , writeCSVFile } from "./utility/CSVParser";
+// import { writeXMLFile, readXMLFile } from "./utility/XMLParser";
+// import { readJSONFile, writeJSONFile } from "./utility/JSONParser";
+// import path from 'path'
 
 
-const filePath = path.resolve(process.cwd(), "src/data/people-100.csv");
-// const outputPath = path.resolve(process.cwd(), "src/data/output.csv");
+// const filePath = path.resolve(process.cwd(), "src/data/people-100.csv");
+// // const outputPath = path.resolve(process.cwd(), "src/data/output.csv");
 
-// async function main() {
-//     try {
-//         console.log(__dirname)
-//         const data = await readCSVFile(filePath)
-//         data.forEach((row)=> console.log(row))
-//     } catch (error) {
-//         throw new Error(`${error}`)
-//     }
+// // async function main() {
+// //     try {
+// //         console.log(__dirname)
+// //         const data = await readCSVFile(filePath)
+// //         data.forEach((row)=> console.log(row))
+// //     } catch (error) {
+// //         throw new Error(`${error}`)
+// //     }
     
+// // }
+
+// // main()
+
+
+
+
+// // async function main() {
+// //     try {
+// //         const data: string[][] = [
+// //             ["Name", "Age", "City"],
+// //             ["John", "25", "Beirut"],
+// //             ["Sara", "30", "Tripoli"],
+// //             ["Ali", "28", "Saida"]
+// //         ];
+
+// //         // Write CSV file
+// //         await writeCSVFile(outputPath, data);
+
+// //         console.log("CSV file written successfully!");
+
+// //         // Verify by reading it back
+// //         const result = await readCSVFile(outputPath);
+
+// //         console.log("CSV content:");
+// //         result.forEach(row => console.log(row));
+
+// //     } catch (error) {
+// //         console.error(error);
+// //     }
+// // }
+
+// // main();
+
+
+// // const inputPath = path.resolve(process.cwd(),"src/data/toy orders.xml");
+
+// // const outputPath = path.resolve(process.cwd(),"src/data/output.xml");
+
+// const inputPath = path.resolve(process.cwd(),"src/data/book orders.json");
+// const outputPath = path.resolve(process.cwd(),"src/data/output.json");
+
+// interface Person {
+//     id: number;
+//     name: string;
+//     age: number;
 // }
 
-// main()
-
-
-
-
 // async function main() {
 //     try {
-//         const data: string[][] = [
-//             ["Name", "Age", "City"],
-//             ["John", "25", "Beirut"],
-//             ["Sara", "30", "Tripoli"],
-//             ["Ali", "28", "Saida"]
-//         ];
+//         const jsonData = await readJSONFile<Person[]>(inputPath);
+//         console.log("JSON Content:");
+//         console.log(JSON.stringify(jsonData, null, 2));
 
-//         // Write CSV file
-//         await writeCSVFile(outputPath, data);
+//         // const data = {
+//         //     person: {
+//         //         name: "Ahmad",
+//         //         age: 25,
+//         //         city: "Beirut"
+//         //     }
+//         // };
 
-//         console.log("CSV file written successfully!");
+//         jsonData.push({
+//             id: 3, 
+//             name: "Mohammad", 
+//             age: 21
+//         })
 
-//         // Verify by reading it back
-//         const result = await readCSVFile(outputPath);
 
-//         console.log("CSV content:");
-//         result.forEach(row => console.log(row));
+//         await writeJSONFile(outputPath, jsonData);
 
-//     } catch (error) {
+//         // console.log("XML file created successfully");
+
+
+//     } catch(error) {
 //         console.error(error);
 //     }
+
 // }
+
 
 // main();
 
+//THE ABOVE ARE FOR TESTING THE PARSERS
 
-// const inputPath = path.resolve(process.cwd(),"src/data/toy orders.xml");
+//THE BELOW ARE FOR TESTING THE CLASS MODELS
 
-// const outputPath = path.resolve(process.cwd(),"src/data/output.xml");
-
-const inputPath = path.resolve(process.cwd(),"src/data/book orders.json");
-const outputPath = path.resolve(process.cwd(),"src/data/output.json");
-
-interface Person {
-    id: number;
-    name: string;
-    age: number;
-}
+import BookBuilder from "./Models/Builders/Book.builder";
+import CakeBuilder from "./Models/Builders/Cake.builder";
+import ToyBuilder from "./Models/Builders/Toy.builder";
 
 async function main() {
-    try {
-        const jsonData = await readJSONFile<Person[]>(inputPath);
-        console.log("JSON Content:");
-        console.log(JSON.stringify(jsonData, null, 2));
+    try{
 
-        // const data = {
-        //     person: {
-        //         name: "Ahmad",
-        //         age: 25,
-        //         city: "Beirut"
-        //     }
-        // };
+        //use method chaining 
+        const cakeBuilder = new CakeBuilder().setFlavor("Chocolate")
+        .setDecorationType("Fondant")
+        .setDecorationColor("Red")
+        .setCustomMessage("Happy Birthday!")
+        .setShape("Round")
+        .setAllergies("None")
+        .setSpecialIngredients("None")
+        .setPackagingType("Box")
+        .setPrice(29.99)
+        .setQuantity(1)
+        .build()
 
-        jsonData.push({
-            id: 3, 
-            name: "Mohammad", 
-            age: 21
-        })
+        const bookBuilder = new BookBuilder().setBookTitle("Book1")
+        .setAuthor("Mohammad")
+        .setGenre("Educational")
+        .setPrice(30)
+        .setQuantity(5)
+        .build()
 
+        const toyBuilder = new ToyBuilder().setType("Toy1")
+        .setAgeGroup("14+")
+        .setBatteryRequired(true)
+        .setBrand("brand1")
+        .setEducational(true)
+        .setMaterial("material1")
+        .setPrice(28.5)
+        .setQuantity(100)
+        .build()
 
-        await writeJSONFile(outputPath, jsonData);
+        console.log(cakeBuilder)
+        console.log(bookBuilder)
+        console.log(toyBuilder)
 
-        // console.log("XML file created successfully");
-
-
-    } catch(error) {
-        console.error(error);
+    }catch(error){
+        console.error(error)
     }
-
 }
 
-
-main();
+main()
