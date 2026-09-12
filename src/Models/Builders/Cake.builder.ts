@@ -16,6 +16,10 @@ export default class CakeBuilder {
     private price!: number;
     private quantity!: number;
 
+    public static newBuilder() : CakeBuilder{
+        return new CakeBuilder()
+    }
+
     setFlavor(flavor: string): CakeBuilder {
         this.flavor = flavor;
         return this
@@ -62,13 +66,12 @@ export default class CakeBuilder {
             "flavor",
             "decorationType",
             "decorationColor",
-            "customMessage",
             "shape",
             "allergies",
             "specialIngredients",
             "packagingType",
-            "price",
-            "quantity"
+            // "price",
+            // "quantity"
         ] as const;
 
         for (const name of requiredItems) {
@@ -87,8 +90,8 @@ export default class CakeBuilder {
             this.allergies,
             this.specialIngredients,
             this.packagingType,
-            this.price,
-            this.quantity
+            // this.price,
+            // this.quantity
         );
 
         

@@ -1,8 +1,25 @@
-import { Item } from "./Item.model";
+import { Item } from "./IItem";
+import { IOrder } from "./IOrder";
+export class Order implements IOrder{
 
-export interface Order{
-    getItem(): Item
-    getPrice(): number
-    getQuantity(): number
-    getId(): string
+    constructor(
+        private item : Item,
+        private price: number, 
+        private quantity: number, 
+        private id: string
+    ){}
+
+    getItem(): Item {
+        return this.item
+    }
+    getPrice(): number {
+        return this.price
+    }
+    getQuantity(): number {
+        return this.quantity
+    }
+    getId(): string {
+        return this.id
+    }
+    
 }

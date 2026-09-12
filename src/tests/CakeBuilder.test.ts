@@ -50,7 +50,6 @@ describe("build a cake Object" , ()=>{
 		['flavor', (builder: CakeBuilder) => builder.setFlavor('')],
 		['decorationType', (builder: CakeBuilder) => builder.setDecorationType('')],
 		['decorationColor', (builder: CakeBuilder) => builder.setDecorationColor('')],
-		['customMessage', (builder: CakeBuilder) => builder.setCustomMessage('')],
 		['shape', (builder: CakeBuilder) => builder.setShape('')],
 		['allergies', (builder: CakeBuilder) => builder.setAllergies('')],
 		['specialIngredients', (builder: CakeBuilder) => builder.setSpecialIngredients('')],
@@ -62,6 +61,14 @@ describe("build a cake Object" , ()=>{
 		clearProperty(builder);
 
 		expect(() => builder.build()).toThrow(/Missing required property/);
+	});
+
+	it('should allow an empty custom message', () => {
+		const cake = createValidBuilder()
+			.setCustomMessage('')
+			.build();
+
+		expect(cake.getCustomMessage()).toBe('');
 	});
 
 	it('should allow zero price and quantity', () => {

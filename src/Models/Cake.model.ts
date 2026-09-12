@@ -1,4 +1,4 @@
-import { Item, ItemCategory } from "./Item.model";
+import { Item, ItemCategory } from "./IItem";
 
 class Cake implements Item {
     constructor(
@@ -10,8 +10,8 @@ class Cake implements Item {
         private allergies: string,
         private specialIngredients: string,
         private packagingType: string,
-        private price: number,
-        private quantity: number
+        // private price: number,
+        // private quantity: number
     ) {}
 
     getCategory(): ItemCategory {
@@ -50,13 +50,13 @@ class Cake implements Item {
         return this.packagingType;
     }
 
-    getPrice(): number {
-        return this.price;
-    }
+    // getPrice(): number {
+    //     return this.price;
+    // }
 
-    getQuantity(): number {
-        return this.quantity;
-    }
+    // getQuantity(): number {
+    //     return this.quantity;
+    // }
 }
 
 export default Cake;

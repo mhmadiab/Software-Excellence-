@@ -103,25 +103,34 @@
 
 //THE BELOW ARE FOR TESTING THE CLASS MODELS
 
+import { CSVCakeMapper } from "./Mappers/Cake.mapper";
+import { CSVOrderMapper } from "./Mappers/Order.mapper";
 import BookBuilder from "./Models/Builders/Book.builder";
 import CakeBuilder from "./Models/Builders/Cake.builder";
 import ToyBuilder from "./Models/Builders/Toy.builder";
+import Cake from "./Models/Cake.model";
+import { readCSVFile } from "./utility/CSVParser";
 
 async function main() {
     try{
 
         //use method chaining 
-        const cakeBuilder = new CakeBuilder().setFlavor("Chocolate")
-        .setDecorationType("Fondant")
-        .setDecorationColor("Red")
-        .setCustomMessage("Happy Birthday!")
-        .setShape("Round")
-        .setAllergies("None")
-        .setSpecialIngredients("None")
-        .setPackagingType("Box")
-        .setPrice(29.99)
-        .setQuantity(1)
-        .build()
+        // const cakeBuilder = new CakeBuilder().setFlavor("Chocolate")
+        // .setDecorationType("Fondant")
+        // .setDecorationColor("Red")
+        // .setCustomMessage("Happy Birthday!")
+        // .setShape("Round")
+        // .setAllergies("None")
+        // .setSpecialIngredients("None")
+        // .setPackagingType("Box")
+        // .setPrice(29.99)
+        // .setQuantity(1)
+        // .build()
+        const data = await readCSVFile('src/data/cake orders.csv')
+        const mapper = new CSVCakeMapper()
+        const orderMapper = new CSVOrderMapper(mapper)
+        const cakes = data.map(row => mapper.map(row))
+        const orders = data.map(row => orderMapper.map(row))
 
         const bookBuilder = new BookBuilder().setBookTitle("Book1")
         .setAuthor("Mohammad")
@@ -140,9 +149,10 @@ async function main() {
         .setQuantity(100)
         .build()
 
-        console.log(cakeBuilder)
-        console.log(bookBuilder)
-        console.log(toyBuilder)
+        // console.log(cakes)
+        console.log(orders)
+        // console.log(bookBuilder)
+        // console.log(toyBuilder)
 
     }catch(error){
         console.error(error)
