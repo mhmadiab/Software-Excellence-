@@ -1,6 +1,6 @@
 import { Item, ItemCategory } from "./Item.model";
 
-class Toy implements Item{
+export default class Toy implements Item{
 
     constructor(
         private type: string, 
