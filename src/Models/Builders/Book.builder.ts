@@ -4,8 +4,10 @@ export default class BookBuilder {
     private bookTitle !: string;
     private author !: string;
     private genre !: string;
-    private price !: number;
-    private quantity !: number;
+
+    public static newBuilder() : BookBuilder{
+        return new BookBuilder()
+    }
 
     setBookTitle(bookTitle : string) : BookBuilder {
         this.bookTitle = bookTitle;
@@ -22,24 +24,12 @@ export default class BookBuilder {
         return this;
     }
 
-    setPrice(price : number) : BookBuilder{
-        this.price = price;
-        return this;
-    }
-
-    setQuantity(quantity : number) : BookBuilder{
-        this.quantity = quantity;
-        return this;
-    }
-
     build() : Book{
 
         const requiredItems = [
             "bookTitle",
             "author",
             "genre", 
-            "price", 
-            "quantity"
         ] as const;
 
         for (const name of requiredItems) {
@@ -54,8 +44,6 @@ export default class BookBuilder {
             this.bookTitle,
             this.author,
             this.genre, 
-            this.price, 
-            this.quantity
         )
     }
 }

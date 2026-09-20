@@ -7,8 +7,10 @@ export default class ToyBuilder {
     private material!: string;
     private batteryRequired!: boolean;
     private educational!: boolean; 
-    private price!: number;
-    private quantity!: number;
+
+    static newBuilder() : ToyBuilder{
+        return new ToyBuilder()
+    }
 
     setType(type: string): ToyBuilder {
         this.type = type;
@@ -40,15 +42,6 @@ export default class ToyBuilder {
         return this;
     }
 
-    setPrice(price: number): ToyBuilder {
-        this.price = price;
-        return this;
-    }
-
-    setQuantity(quantity: number): ToyBuilder {
-        this.quantity = quantity;
-        return this;
-    }
 
     build(): Toy {
         const requiredItems = [
@@ -58,8 +51,6 @@ export default class ToyBuilder {
             "material",
             "batteryRequired",
             "educational",
-            "price",
-            "quantity"
         ] as const;
 
         for (const name of requiredItems) {
@@ -77,8 +68,6 @@ export default class ToyBuilder {
             this.material,
             this.batteryRequired,
             this.educational,
-            this.price,
-            this.quantity
         );
     }
 }

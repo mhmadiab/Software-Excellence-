@@ -70,8 +70,6 @@ export default class CakeBuilder {
             "allergies",
             "specialIngredients",
             "packagingType",
-            // "price",
-            // "quantity"
         ] as const;
 
         for (const name of requiredItems) {
@@ -90,8 +88,6 @@ export default class CakeBuilder {
             this.allergies,
             this.specialIngredients,
             this.packagingType,
-            // this.price,
-            // this.quantity
         );
 
         
