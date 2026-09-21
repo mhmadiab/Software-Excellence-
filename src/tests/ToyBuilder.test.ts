@@ -9,8 +9,8 @@ const createValidBuilder = (): ToyBuilder => new ToyBuilder()
 	.setMaterial('Wood')
 	.setBatteryRequired(true)
 	.setEducational(true)
-	.setPrice(15)
-	.setQuantity(2);
+	// .setPrice(15)
+	// .setQuantity(2);
 
 describe('build a toy object', () => {
 	it('should build a Toy with all provided properties', () => {
@@ -23,8 +23,6 @@ describe('build a toy object', () => {
 		expect(toy.getMaterial()).toBe('Wood');
 		expect(toy.getBatteryRequired()).toBe(true);
 		expect(toy.getEducational()).toBe(true);
-		expect(toy.getPrice()).toBe(15);
-		expect(toy.getQuantity()).toBe(2);
 	});
 
 	it('should return the same builder from every setter', () => {
@@ -36,8 +34,6 @@ describe('build a toy object', () => {
 		expect(builder.setMaterial('Wood')).toBe(builder);
 		expect(builder.setBatteryRequired(true)).toBe(builder);
 		expect(builder.setEducational(true)).toBe(builder);
-		expect(builder.setPrice(15)).toBe(builder);
-		expect(builder.setQuantity(2)).toBe(builder);
 	});
 
 	it.each([
@@ -47,8 +43,6 @@ describe('build a toy object', () => {
 		['material', (builder: ToyBuilder) => builder.setMaterial('')],
 		['batteryRequired', (builder: ToyBuilder) => builder.setBatteryRequired('' as unknown as boolean)],
 		['educational', (builder: ToyBuilder) => builder.setEducational('' as unknown as boolean)],
-		['price', (builder: ToyBuilder) => builder.setPrice('' as unknown as number)],
-		['quantity', (builder: ToyBuilder) => builder.setQuantity('' as unknown as number)]
 	])('should reject an empty %s', (_property, clearProperty) => {
 		const builder = createValidBuilder();
 		clearProperty(builder);
@@ -64,15 +58,5 @@ describe('build a toy object', () => {
 
 		expect(toy.getBatteryRequired()).toBe(false);
 		expect(toy.getEducational()).toBe(false);
-	});
-
-	it('should allow zero price and quantity', () => {
-		const toy = createValidBuilder()
-			.setPrice(0)
-			.setQuantity(0)
-			.build();
-
-		expect(toy.getPrice()).toBe(0);
-		expect(toy.getQuantity()).toBe(0);
 	});
 });

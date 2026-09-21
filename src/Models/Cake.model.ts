@@ -10,8 +10,6 @@ class Cake implements Item {
         private allergies: string,
         private specialIngredients: string,
         private packagingType: string,
-        // private price: number,
-        // private quantity: number
     ) {}
 
     getCategory(): ItemCategory {
@@ -49,14 +47,6 @@ class Cake implements Item {
     getPackagingType(): string {
         return this.packagingType;
     }
-
-    // getPrice(): number {
-    //     return this.price;
-    // }
-
-    // getQuantity(): number {
-    //     return this.quantity;
-    // }
 }
 
 export default Cake;

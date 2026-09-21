@@ -9,8 +9,6 @@ export default class Toy implements Item{
         private material: string, 
         private batteryRequired: boolean, 
         private educational: boolean, 
-        private price: number, 
-        private quantity: number, 
     ){}
 
     getType(): string {
@@ -35,14 +33,6 @@ export default class Toy implements Item{
 
     getEducational(): boolean{
         return this.educational
-    }
-
-    getPrice(): number{
-        return this.price
-    }
-
-    getQuantity(): number{
-        return this.quantity
     }
 
     getCategory(): ItemCategory {
